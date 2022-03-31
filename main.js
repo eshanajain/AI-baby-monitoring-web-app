@@ -1,10 +1,10 @@
 song = "";
-objects = "";
+objects = [];
 status = "";
 
 function preload()
 {
-	song = loadSound("alert.mp3");
+song = loadSound("who_can_it_be_now.mp3");
 }
 
 function setup() {
@@ -48,15 +48,26 @@ function draw() {
           noFill();
           stroke(r,g,b);
           rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
-
-          if(objects[i].label=="person"){
-            document.getElementById("number_of_objects").innerHTML="Baby found";
+         
+          if(objects[i].label == "person")
+          {
+            document.getElementById("number_of_objects").innerHTML = "Baby Found";
+            console.log("stop");
             song.stop();
           }
-else{
-  document.getElementById("number_of_objects").innerHTML="Baby not found";
+          else
+          {
+            document.getElementById("number_of_objects").innerHTML = "Baby Not Found";
+            console.log("play");
             song.play();
-}
+          }
+         }
+
+        if(objects.length == 0)
+        {
+          document.getElementById("number_of_objects").innerHTML = "Baby Not Found";
+          console.log("play");
+          song.play();
         }
-      }}
-    
+      }
+}
